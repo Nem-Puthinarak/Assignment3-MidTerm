@@ -44,7 +44,7 @@ app.post('/delivery', (req, res) => {
 });
 
 // new put API
-app.put('/order/:id', (req, res) => {
+app.put('/orders/:id', (req, res) => {
     const orderId = req.params.id;
     const { status } = req.body;    
     if (!status) {
@@ -54,7 +54,7 @@ app.put('/order/:id', (req, res) => {
 });
 
 // new delete API
-app.delete('/order/:id', (req, res) => {
+app.delete('/orders/:id', (req, res) => {
     const orderId = req.params.id;    
     res.json({ message: `Order ${orderId} has been deleted` });
 });
