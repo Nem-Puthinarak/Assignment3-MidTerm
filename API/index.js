@@ -34,6 +34,32 @@ app.get('/orders', (req, res) => {
     ]);
 });
 
+// new Post API
+app.post('/delivery', (req, res) => {
+    const { customer, address, item } = req.body;  
+    if (!customer || !address || !item) {
+        return res.status(400).json({ error: 'Missing required fields' });
+    }      
+    res.json({ message: 'Delivery request received', customer, address, item });
+});
+
+// new put API
+app.put('/order/:id', (req, res) => {
+    const orderId = req.params.id;
+    const { status } = req.body;    
+    if (!status) {
+        return res.status(400).json({ error: 'Missing status field' });
+    }
+    res.json({ message: `Order ${orderId} status updated to ${status}` });
+});
+
+// new delete API
+app.delete('/order/:id', (req, res) => {
+    const orderId = req.params.id;    
+    res.json({ message: `Order ${orderId} has been deleted` });
+});
+
+
 const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`FoodExpress API running on port ${PORT}`);
